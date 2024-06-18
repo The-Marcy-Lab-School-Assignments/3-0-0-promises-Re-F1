@@ -1,8 +1,10 @@
-const crypto = require('crypto');
+const crypto = require('crypto'); 
 
+// Question 6 //
 const numsToRGBColor = ([color1, color2, color3]) => {
   return `rgb(${color1}, ${color2}, ${color3})`;
 };
+// console.log(numsToRGBColor([1, 2, 334]))
 
 const getRandomBytes = () => new Promise((resolve, reject) => {
   crypto.randomFill(new Uint8Array(3), (err, buffer) => {
@@ -14,13 +16,21 @@ const getRandomBytes = () => new Promise((resolve, reject) => {
 const return4RandomColors = () => {
   const colors = [];
   return getRandomBytes()
-    .then(() => {
-    })
-    .then(() => {
-    })
-    .then(() => {
-    })
-    .then(() => {
+    .then((val) => {
+      colors.push(numsToRGBColor(val))
+      return getRandomBytes()
+    }) 
+    .then((val) => {
+      colors.push(numsToRGBColor(val))
+      return getRandomBytes()
+    }) 
+    .then((val) => {
+      colors.push(numsToRGBColor(val))
+      return getRandomBytes()
+    }) 
+    .then((val) => {
+      colors.push(numsToRGBColor(val))
+      return colors
     })
     .catch((err) => {
       console.error(err);
